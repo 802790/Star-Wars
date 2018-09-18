@@ -70,48 +70,44 @@ public class Space extends JPanel{
             g.fillOval(x, y, size, size);
         }
     }
+       
+    /**
+     * Makes the hero and enemy bounce off walls
+     */    
+    private void wallCollissions(Character c) {
+        
+        c.getX();
+        c.getY();
+        
+        if (c.getX() <= 0 || c.getY() >= this.getWidth()) {
+            c.reverseX();
+        }
+        
+        if (c.getY() <= 0 || c.getY() >= this.getHeight()) {
+            c.reverseY();
+        }
+        
+    }
 
     void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+            hero.setDX(3);
+        }
+
+            if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
+            hero.setDX(-3);
+        }
+    
+            if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
+            hero.setDY(3);
+        }
+
+            if (e.getKeyCode() == KeyEvent.VK_UP ) {
+            hero.setDY(-3);
+        }
     }
 
     void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    
-        private class ScheduleTask extends TimerTask {
-        	    
-        @Override
-        public void run() {
-            hero.update();
-            enemy.update();
-            repaint();
-        }
-    
-    public void keyPressed(KeyEvent e) {
-        
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
-            hero.setDX(1);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
-            hero.setDX(-1);
-        }
-    
-        if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
-            hero.setDY(1);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_UP ) {
-            hero.setDY(-1);
-        }
-            
-    }
-    
-    public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
             hero.setDX(0);
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
@@ -121,6 +117,28 @@ public class Space extends JPanel{
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
             hero.setDY(0);
     }
+    
+
+    
+    
+    
+        private class ScheduleTask extends TimerTask {
+        	    
+        @Override
+        public void run() {
+        wallCollissions(hero);
+        wallCollissions(enemy);
+            hero.update();
+            enemy.update();
+            repaint();
+        }
+    
+    public void keyPressed(KeyEvent e) {
+        
+        
+            
+    }
+    
         
     }
 }

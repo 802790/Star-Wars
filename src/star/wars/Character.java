@@ -100,7 +100,7 @@
      }
      
      public void kill() {
-         
+         grow();
      }
       
      public void move(int dx, int dy) {
@@ -108,13 +108,29 @@
         y += dy * 3;
     }
     
+     /**
+     * Makes the character "bounce" and reverse direction on X axis 
+     */
+    public void reverseX() {
+        
+    }
+    
+    /**
+     * Makes the character "bounce" and reverse direction on Y axis 
+     */
+    public void reverseY() {
+        
+    }
+    
+     
     public void update() {
         move(dx, dy);
     }
     
     //Private Methods
     private void grow() {
-        
+        size = (int) (Math.random()*10) - 4 ;
+        size *= 1.05;
      }
  
  }
